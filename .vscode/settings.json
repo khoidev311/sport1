@@ -1,0 +1,12 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+  },
+  /**
+   * TailwindCSS IntelliSense
+   * https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+   * classRegex: `buttonClassName = "class-*"`, `buttonClassNames = "class-* otherClass"` or `buttonClassNames = "class-* otherClass:otherClass-*"` will be matched. `-*` must be present.
+   */
+  "tailwindCSS.experimental.classRegex": ["[cC]lassName\\w*\\s*[+-]?=\\s*\"([^\"]*(-[a-zA-Z0-9]+)+)\""],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}
