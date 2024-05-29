@@ -22,7 +22,7 @@ const DropdownMenuMobile = ({
   const handleHideDebounced = useCallback(() => debounce(onHide, 0)(), [onHide]);
 
   const handleClick = useCallback(
-    (e: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>) => {
+    (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
       e.stopPropagation();
 
