@@ -76,7 +76,6 @@ const normalizeQuery = (params: BaseListQueryType) => {
     acc.sort = desc ? `-${id}` : id;
     return acc;
   }, {});
-
   set(normalizedFilterParams, "page", get(params, "pageIndex", 0) + 1);
   set(normalizedFilterParams, "per_page", params.pageSize);
 

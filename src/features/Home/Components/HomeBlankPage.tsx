@@ -16,7 +16,6 @@ const HomeBlankPage = ({ title }: HomeBlankPageProps) => {
         <div className="text-4xl font-semibold uppercase">{title}</div>
         <LoadingSkeleton className="mt-6 h-4 w-56" />
       </div>
-
       <div className="min-h-72 w-full max-w-4xl space-y-4 rounded-xl border-2 border-gray-100 bg-white p-6 shadow-md shadow-gray-100 ">
         <LoadingSkeleton className="h-4 w-full" />
         <LoadingSkeleton className="h-4 w-3/4" />

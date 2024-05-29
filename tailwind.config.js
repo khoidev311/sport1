@@ -18,9 +18,7 @@ module.exports = {
       },
       colors: {
         primary: {
-          ...colors.red,
-          700: "#bf1922",
-          500: "#e32832",
+          ...colors.purple,
         },
       },
       aspectRatio: {

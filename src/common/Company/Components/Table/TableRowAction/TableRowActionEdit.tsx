@@ -10,7 +10,7 @@ const TableRowActionEdit = <T extends unknown>({
   isDisabled,
   onClick,
 }: Pick<ButtonTableRowActionProps<T>, "data" | "isDisabled" | "onClick">) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <TableRowAction data={data} isDisabled={isDisabled} title={t("edit")} type="button" onClick={onClick}>

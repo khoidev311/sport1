@@ -27,11 +27,11 @@ const LastestNews = () => {
     fetchData();
   }, [fetchData]);
   return (
-    <div className="col-span-1">
-      <div className="w-full h-10 font-bold text-2xl rounded-md mb-2">{t("lastestNews")}</div>
+    <div className="xs:col-span-3 xl:col-span-1">
+      <div className="w-full h-10 font-bold text-2xl rounded-md xl:mt-0 xs:mt-4 mb-2">{t("lastestNews")}</div>
       <div className="h-[480px] overflow-y-clip flex flex-wrap gap-y-6">
         {!isLoading &&
-          lastestNews.map((item) => <NewsItem key={item.uuid} type={NewsItemLayoutEnum.ROW} news={item} />)}
+          lastestNews.map((item) => <NewsItem key={item._id} type={NewsItemLayoutEnum.ROW} news={item} />)}
 
         {isLoading &&
           Array.from({ length: 3 }).map((_1, index) => (

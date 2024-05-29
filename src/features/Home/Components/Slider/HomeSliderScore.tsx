@@ -27,13 +27,15 @@ const HomeSliderScore = () => {
   }, [fetchData]);
 
   return (
-    <div className="w-full h-fit px-40 py-6">
+    <div className="w-full h-fit xs:px-6 sm:px-10 md:px-12 xl:px-40 py-6">
       {isLoading && (
-        <div className="flex justify-center items-center h-fit gap-x-6">
-          {Array.from({ length: 4 }).map((_1, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <HomeSliderScoreItemSkeleton key={index} />
-          ))}
+        <div className="overflow-y-hidden xs:h-32 md:h-28 xl:h-36">
+          <div className="grid xs:grid-cols-1 md:grid-cols-3 xl:grid-cols-4 h-fit gap-x-6">
+            {Array.from({ length: 4 }).map((_1, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <HomeSliderScoreItemSkeleton key={index} />
+            ))}
+          </div>
         </div>
       )}
       {!isLoading && (
@@ -45,9 +47,23 @@ const HomeSliderScore = () => {
             disableOnInteraction: false,
           }}
           modules={[Autoplay]}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+            },
+            568: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1248: {
+              slidesPerView: 4,
+            },
+          }}
         >
           {scores?.map((item) => (
-            <SwiperSlide key={item.uuid}>
+            <SwiperSlide key={item._id}>
               <HomeSliderScoreItem score={item} />
             </SwiperSlide>
           ))}

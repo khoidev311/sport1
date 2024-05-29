@@ -7,7 +7,7 @@ import TransferNews from "./Transfer/TransferNews";
 
 const News = () => {
   return (
-    <div className="w-full h-fit px-40 bg-gray-50 py-8">
+    <div className="w-full h-fit xs:px-6 md:px-20 xl:px-40 bg-gray-50 py-8">
       <div className="w-full h-full grid grid-cols-3 gap-x-6 mb-6">
         <BigNews />
         <LastestNews />

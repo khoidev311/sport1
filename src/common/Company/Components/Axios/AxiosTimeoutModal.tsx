@@ -11,7 +11,7 @@ import { hideTimeoutModal } from "@slices/commonSlice";
 import { Button } from "../Button";
 
 const AxiosTimeoutModal = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const isShow = useSelector((state) => state.common.isOpenTimeoutModal);
   const [refreshParam, setRefreshParam] = useWatchParam("refresh");

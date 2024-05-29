@@ -19,7 +19,7 @@ import { forgetPasswordFormSchema } from "../Schemas/ForgetPasswordFormSchema";
 import ForgetPasswordFormFooter from "./Components/ForgetPasswordFormFooter";
 
 const ForgetPassword = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 

@@ -29,9 +29,9 @@ const HotNews = () => {
   return (
     <div className="w-full h-fit rounded-md">
       <div className="w-full h-10 font-bold text-2xl rounded-md mb-2">{t("hotNews")}</div>
-      <div className="w-full h-fit grid-cols-4 grid gap-x-6">
+      <div className="w-full h-fit grid-cols-4 grid gap-6">
         {!isLoading &&
-          hotNews.map((item) => <NewsItem key={item.uuid} type={NewsItemLayoutEnum.COLUMN} news={item} />)}
+          hotNews.map((item) => <NewsItem key={item._id} type={NewsItemLayoutEnum.COLUMN} news={item} />)}
         {isLoading &&
           Array.from({ length: 4 }).map((_1, index) => (
             // eslint-disable-next-line react/no-array-index-key

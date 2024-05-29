@@ -31,7 +31,7 @@ const TableHeaderSearch = (
   { id, field, groupKey, classNameInput, classNameContainer, onChangeFilter }: TableHeaderSearchProps,
   ref: ForwardedRef<unknown>,
 ) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const [isShowSearchFieldDropdown, setIsShowSearchFieldDropdown] = useState(false);
   const [searchValue, setSearchValue] = useState("");

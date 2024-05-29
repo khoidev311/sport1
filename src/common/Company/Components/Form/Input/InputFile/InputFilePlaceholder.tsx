@@ -10,7 +10,7 @@ const InputFilePlaceholder = ({
   multiple,
   onChange,
 }: Pick<UncontrolledInputFileProps, "accept" | "multiple" | "onChange">) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const handleChangeFile = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

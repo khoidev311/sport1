@@ -11,7 +11,7 @@ interface ConfirmationModalWarningProps {
 }
 
 const ConfirmationModalWarning = ({ message, status }: ConfirmationModalWarningProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <div

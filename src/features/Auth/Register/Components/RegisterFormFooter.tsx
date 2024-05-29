@@ -5,7 +5,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { AUTH_PATH } from "@constants/routeConstant";
 
 const RegisterFormFooter = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const [searchParams] = useSearchParams();
 

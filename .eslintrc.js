@@ -24,6 +24,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
+    "no-underscore-dangle": 'off',
     "import/order": [
       "error",
       {

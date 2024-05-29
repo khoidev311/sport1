@@ -15,7 +15,7 @@ interface HomeBodyRouteProps {
 const HomeBodyRoute = ({ league }: HomeBodyRouteProps) => {
   const [activeTab, setActiveTab] = useState<TabFeatureEnum>(TabFeatureEnum.SCOREBOARD);
   return (
-    <div className="col-span-3 h-auto">
+    <div className="xs:col-span-4 lg:col-span-3 h-auto">
       <HomeBodyHeader activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === TabFeatureEnum.FIXTURES && <HomeFixtures league={league} />}
       {activeTab === TabFeatureEnum.SCOREBOARD && <HomeScoreboard league={league} />}

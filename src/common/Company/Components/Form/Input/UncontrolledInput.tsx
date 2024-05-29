@@ -16,19 +16,17 @@ const UncontrolledInput = (
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
   return (
-    <div>
-      <UncontrolledInputSkeleton
-        {...(value === null || value === undefined || value === "" ? { value: "" } : { value })}
-        error={error}
-        style={style}
-        inlineError={inlineError}
-        isShowLabelWhenFocusing={isShowLabelWhenFocusing}
-        isRequired={isRequired}
-        isAvailableValue={Boolean(value)}
-        ref={ref}
-        {...props}
-      />
-    </div>
+    <UncontrolledInputSkeleton
+      {...(value === null || value === undefined || value === "" ? { value: "" } : { value })}
+      error={error}
+      style={style}
+      inlineError={inlineError}
+      isShowLabelWhenFocusing={isShowLabelWhenFocusing}
+      isRequired={isRequired}
+      isAvailableValue={Boolean(value)}
+      ref={ref}
+      {...props}
+    />
   );
 };
 

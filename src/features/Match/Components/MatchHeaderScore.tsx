@@ -13,7 +13,7 @@ interface MatchHeaderScoreProps {
 
 const MatchHeaderScore = ({ score, isLoading }: MatchHeaderScoreProps) => {
   return (
-    <div className="w-full  bg-white rounded-b-lg h-40 grid grid-cols-8">
+    <div className="w-full  bg-white xs:rounded-b-none md:rounded-b-lg h-40 grid grid-cols-8">
       {isLoading ? (
         <MatchHeaderScoreSkeleton />
       ) : (

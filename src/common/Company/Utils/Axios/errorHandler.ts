@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { UNAUTHORIZED } from "http-status";
+import { INTERNAL_SERVER_ERROR, UNAUTHORIZED } from "http-status";
 import _ from "lodash";
 
 import { authService } from "@services/index";
@@ -46,6 +46,10 @@ const errorHandler = async (
       switch (status) {
         case UNAUTHORIZED: {
           redirectURL = AUTH_PATH.LOGIN;
+          break;
+        }
+        case INTERNAL_SERVER_ERROR: {
+          redirectURL = "/error";
           break;
         }
         default:

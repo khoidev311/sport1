@@ -18,11 +18,10 @@ import { setUser } from "@slices/commonSlice";
 
 import AuthFormContainer from "../Components/AuthFormContainer";
 import { loginFormSchema } from "../Schemas/LoginFormSchema";
-import { generateAuthRedirectURL } from "../Utils/GenerateAuthRedirectURL";
 import LoginFormFooter from "./Components/LoginFormFooter";
 
 const Login = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [generalError, setGeneralError] = useState<AuthFormGeneralError | null>(null);
@@ -49,12 +48,11 @@ const Login = () => {
       .loginWithEmailAndPassword(formData)
       .then((userData) => {
         // const { accessToken, refreshToken, data: userData } = response;
-        const redirectURL = generateAuthRedirectURL([userData.role.slug], searchParams.get("redirect"));
 
         // setAuthToken({ accessToken, refreshToken });
         dispatch(setUser(userData));
 
-        navigate(redirectURL);
+        navigate("/");
       })
       .catch((err) => {
         const { status, message } = err.response.data;

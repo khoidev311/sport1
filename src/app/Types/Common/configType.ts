@@ -12,13 +12,10 @@ export interface ConfigGroupDataType extends BaseDataType {
 }
 
 export interface ConfigDataType extends BaseDataType {
-  id: number;
   key: string;
   value: string;
   type: ConfigTypeEnum;
   status: ConfigStatusEnum;
-  group_id: number;
-  group?: ConfigGroupDataType;
 }
 
 export interface ConfigFormDataType extends Partial<Nullable<Omit<ConfigDataType, "group" | "updated_at">>> {}

@@ -1,5 +1,5 @@
 import { ColumnDef, PaginationState, Row, RowSelectionState, TableState } from "@tanstack/react-table";
-import { MouseEventHandler, MutableRefObject, ReactElement, ReactNode } from "react";
+import { Key, MouseEventHandler, MutableRefObject, ReactElement, ReactNode } from "react";
 
 import { ComponentStatusType } from "@components/interface";
 import { BaseListQueryType, ResponseMetaType, TableOnclickFunctionType } from "@interfaces/Common";
@@ -92,13 +92,13 @@ interface BaseTableRowActionProps {
 }
 
 export interface ButtonTableRowActionProps<T = unknown> extends BaseTableRowActionProps {
-  data: T;
+  data: Key;
   type: "button";
   onClick: TableOnclickFunctionType<T>;
 }
 
 export interface DivTableRowActionProps extends BaseTableRowActionProps {
-  data?: never;
+  data?: Key;
   type: "div";
   onClick?: MouseEventHandler<HTMLDivElement>;
 }

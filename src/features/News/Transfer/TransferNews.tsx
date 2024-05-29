@@ -48,11 +48,27 @@ const TransferNews = () => {
         {isLoading && <LoadingSkeleton className="col-span-1 bg-white h-72 rounded-md" />}
       </div>
       <div className="w-full h-fit pb-2">
-        <Swiper spaceBetween={24} slidesPerView={4} modules={[Navigation]} wrapperClass="pb-0.5">
+        <Swiper
+          spaceBetween={24}
+          slidesPerView={4}
+          modules={[Navigation]}
+          wrapperClass="pb-0.5"
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+            },
+            568: {
+              slidesPerView: 3,
+            },
+            1248: {
+              slidesPerView: 4,
+            },
+          }}
+        >
           {!isLoading &&
             transferNews?.map((item) => (
-              <SwiperSlide key={item.uuid}>
-                <NewsItem key={item.uuid} type={NewsItemLayoutEnum.COLUMN} news={item} />
+              <SwiperSlide key={item._id}>
+                <NewsItem key={item._id} type={NewsItemLayoutEnum.COLUMN} news={item} />
               </SwiperSlide>
             ))}
         </Swiper>

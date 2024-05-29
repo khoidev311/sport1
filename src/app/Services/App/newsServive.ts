@@ -62,7 +62,7 @@ const fakeDataNews = [
 
 const getFakeData = (pageSize: number, categoryEnum: NewsCategoryEnum): NewsDataType[] =>
   Array.from({ length: pageSize }).map((_, index) => ({
-    uuid: index,
+    _id: index,
     category: categoryEnum,
     title: fakeDataNews[index].title,
     description: fakeDataNews[index].description,
@@ -143,7 +143,7 @@ const fakeDataWithId = getFakeData(8, NewsCategoryEnum.BIG);
 const getNewsById = async (newsId: number) =>
   new Promise<NewsDataType>((resolve) => {
     setTimeout(() => {
-      resolve(fakeDataWithId.find((item) => item.uuid === newsId) as NewsDataType);
+      resolve(fakeDataWithId.find((item) => item._id === newsId) as NewsDataType);
     }, 1000);
   });
 

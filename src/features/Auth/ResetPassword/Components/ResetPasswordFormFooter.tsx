@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { AUTH_PATH } from "@constants/routeConstant";
 
 const ResetPasswordFormFooter = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <div className="text-left">

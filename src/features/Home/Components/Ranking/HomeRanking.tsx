@@ -2,8 +2,8 @@ import { memo, useCallback, useEffect, useState } from "react";
 
 import { LeagueDataType } from "@interfaces/Common/leagueType";
 import { RankDataType } from "@interfaces/Common/rankType";
-import { getRank } from "@services/App/rankService";
 import { TableContentBodyEmptyItem } from "@components/Table";
+import { getRankByLeagueId } from "@services/App/rankService";
 
 import HomeRankingItem from "./HomeRankingItem";
 import HomeRankingHeader from "./HomeRankingHeader";
@@ -18,9 +18,10 @@ const HomeRanking = ({ league }: HomeRankingProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
+    if (!league) return;
     setIsLoading(true);
     try {
-      const { data } = await getRank(league.uuid);
+      const { data } = await getRankByLeagueId(league._id);
       setRanking(data);
     } finally {
       setIsLoading(false);
@@ -31,16 +32,18 @@ const HomeRanking = ({ league }: HomeRankingProps) => {
     fetchData();
   }, [fetchData]);
   return (
-    <div className="h-fit w-full bg-white rounded-md border pb-1">
-      <HomeRankingHeader />
-      <div className="w-full h-fit px-2">
-        {!isLoading && ranking.map((item) => <HomeRankingItem key={item.uuid} rank={item} />)}
-        {isLoading &&
-          Array.from({ length: 10 }).map((_1, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <HomeRankingItemSkeleton key={index} />
-          ))}
-        {!isLoading && ranking.length < 1 && <TableContentBodyEmptyItem className="w-full h-96" />}
+    <div className="xs:overflow-x-scroll md:overscroll-x-none">
+      <div className="h-fit xs:w-max md:w-full bg-white rounded-md border pb-1 ">
+        <HomeRankingHeader />
+        <div className="w-full h-fit px-2">
+          {!isLoading && ranking.map((item) => <HomeRankingItem key={item._id} rank={item} />)}
+          {isLoading &&
+            Array.from({ length: 10 }).map((_1, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <HomeRankingItemSkeleton key={index} />
+            ))}
+          {!isLoading && ranking.length < 1 && <TableContentBodyEmptyItem className="w-full h-96" />}
+        </div>
       </div>
     </div>
   );

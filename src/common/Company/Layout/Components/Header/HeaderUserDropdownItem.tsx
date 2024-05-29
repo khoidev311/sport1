@@ -11,7 +11,7 @@ interface HeaderUserDropdownItemProps {
 }
 
 const HeaderUserDropdownItem = ({ onClick }: HeaderUserDropdownItemProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const user = useSelector((state) => state.common.user);
 
@@ -41,7 +41,7 @@ const HeaderUserDropdownItem = ({ onClick }: HeaderUserDropdownItemProps) => {
       <div className="group flex w-full cursor-pointer" role="button" tabIndex={0} onClick={onClick}>
         <div className="mb-3 h-full w-full border-b-2 border-gray-100 pb-4 text-sm">
           <Link to="profile" className="font-semibold group-hover:text-primary-500">
-            {user?.fullName}
+            {user?.fullname}
           </Link>
           <Link to="profile" className="mt-1 line-clamp-1 break-all text-sm group-hover:text-primary-500">
             {user?.email}
@@ -56,7 +56,7 @@ const HeaderUserDropdownItem = ({ onClick }: HeaderUserDropdownItemProps) => {
       >
         <FiSettings />
         <p className="ml-3 text-sm">
-          <Link to="dashboard">{t("dashboard")}</Link>
+          <Link to="admin">{t("dashboard")}</Link>
         </p>
       </div>
       <div

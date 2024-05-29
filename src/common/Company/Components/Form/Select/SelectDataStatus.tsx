@@ -10,7 +10,7 @@ import Select from "./Select";
 interface SelectDataStatusProps extends Omit<SelectProps, "options" | "placeholder"> {}
 
 const SelectDataStatus = (props: SelectDataStatusProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const statusOptions = useMemo(
     () => values(DataStatusEnum).map((status) => ({ label: t(status), value: status })),

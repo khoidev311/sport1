@@ -95,7 +95,7 @@ const UncontrolledSelect = ({
         ref={selectRef}
         className={twMerge(
           borderColor,
-          "relative min-h-13 w-full rounded-lg border-2 px-3.5 pb-0.5 pt-1 group-focus-within:border-blue-500",
+          "relative min-h-13 w-full rounded-lg border-2 pr-3.5 pb-0.5 pt-1 group-focus-within:border-blue-500",
           isDisabled && "bg-gray-100",
           error && "border-red-500",
           classNameSelect,

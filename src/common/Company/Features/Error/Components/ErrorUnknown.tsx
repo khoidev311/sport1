@@ -8,7 +8,7 @@ import ErrorContainer from "./ErrorContainer";
 import ErrorUnknownDetail, { ErrorUnknownDetailProps } from "./ErrorUnknownDetail";
 
 const ErrorUnknown = ({ error }: Partial<ErrorUnknownDetailProps>) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
   const isDevelopment = useMemo(() => process.env.NODE_ENV === "development", []);
 
   const handleClickTryAgain = useCallback(() => {

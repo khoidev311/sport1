@@ -35,7 +35,7 @@ const TableHeaderFilterDropdown = ({
   onClearSelectedFilters,
   onHide,
 }: TableHeaderFilterDropdownProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const [filterSearchValue, setFilterSearchValue] = useState("");
@@ -125,7 +125,7 @@ const TableHeaderFilterDropdown = ({
           !!filterOptions.length &&
           filterOptions?.map((option) => (
             <TableHeaderFilterDropdownOptionItem
-              key={option.id || option.code || option.uuid}
+              key={option._id || option.id || option.code || option.uuid}
               filterBy={filterBy}
               maxSelection={maxSelection}
               option={option}

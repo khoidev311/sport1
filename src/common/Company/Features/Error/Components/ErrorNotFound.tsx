@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import ErrorContainer from "./ErrorContainer";
 
 const ErrorNotFound = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <ErrorContainer>

@@ -99,7 +99,7 @@ const beautifyFileSize = (size: number) => {
 };
 
 const defaultLeague = {
-  uuid: 1,
+  _id: "1",
   name: "Primier League",
   logo: "https://seeklogo.com/images/P/premier-league-new-logo-D22A0CE87E-seeklogo.com.png",
 };

@@ -4,7 +4,7 @@ import { BsFolder2Open } from "react-icons/bs";
 import { twMerge } from "tailwind-merge";
 
 const TableContentBodyEmptyItem = ({ className }: HTMLAttributes<HTMLElement>) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <div

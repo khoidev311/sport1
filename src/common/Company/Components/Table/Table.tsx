@@ -140,7 +140,7 @@ const Table = (
     pageCount: totalPages,
     enableMultiRowSelection,
     getCoreRowModel: getCoreRowModel(),
-    getRowId: (row) => row.id || row.code || row.key || row.slug || 0,
+    getRowId: (row) => row._id || row.id || row.code || row.key || row.slug || 0,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setColumnSorting,
     onPaginationChange: setPagination,

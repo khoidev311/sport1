@@ -21,7 +21,7 @@ import { resetPasswordFormSchema } from "../Schemas/ResetPassowordFormSchema";
 import ResetPasswordFormFooter from "./Components/ResetPasswordFormFooter";
 
 const ResetPassword = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const toast = useToast();
 

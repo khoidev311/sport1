@@ -10,12 +10,11 @@ export interface AuthLoginFormDataType {
   password: string;
 }
 
-export interface AuthRegisterFormDataType extends Pick<UserDataType, "email" | "phone"> {
-  firstName: string;
-  lastName: string;
+export interface AuthRegisterFormDataType extends Pick<UserDataType, "email"> {
+  username: string;
+  fullname: string;
   password: string;
-  passwordConfirmation: string;
-  isAcceptedTerms: boolean;
+  password_confirmation: string;
 }
 
 export interface AuthForgetPasswordFormDataType {

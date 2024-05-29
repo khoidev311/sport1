@@ -16,7 +16,7 @@ const NewsItem = ({ type, news }: NewsItemProps) => {
   return (
     <>
       {type === NewsItemLayoutEnum.COLUMN && (
-        <Link to={`/news/${news.uuid}`}>
+        <Link className="xs:col-span-4 md:col-span-2 xl:col-span-1" to={`/news/${news._id}`}>
           <div className="w-full hover:scale-[1.01] bg-white rounded-md h-fit drop-shadow-md group">
             <div className="w-full h-36">
               <img
@@ -50,7 +50,7 @@ const NewsItem = ({ type, news }: NewsItemProps) => {
         </Link>
       )}
       {type === NewsItemLayoutEnum.ROW && (
-        <Link to={`/news/${news.uuid}`}>
+        <Link to={`/news/${news._id}`}>
           <div className="w-full grid group hover:scale-[1.01] grid-cols-5 bg-white rounded-md h-36 drop-shadow-md">
             <div className="col-span-2">
               <img

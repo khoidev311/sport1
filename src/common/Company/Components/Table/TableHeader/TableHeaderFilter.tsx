@@ -48,8 +48,8 @@ const TableHeaderFilter = (
 
   const isFirstRenderRef = useRef(true);
   const filterOptionLabelFactory = useMemo(
-    () => headerColumnDef.meta?.filterOptionLabelFactory ?? ((option: never) => `${option}`),
-    [headerColumnDef.meta?.filterOptionLabelFactory],
+    () => headerColumnDef.meta?.filterOptionLabelFactory ?? ((option: never) => `${option[filterBy]}`),
+    [headerColumnDef.meta?.filterOptionLabelFactory, filterBy],
   );
 
   const filterValueBy = useMemo(
@@ -110,7 +110,7 @@ const TableHeaderFilter = (
         .map((option) => {
           let filterValue = "";
           const result = {
-            id: option.id || option.uuid || option.value || option.name || option.label || option,
+            id: option._id || option.uuid || option.value || option.name || option.label || option,
             label: "",
             value: "",
           };
@@ -181,16 +181,9 @@ const TableHeaderFilter = (
     selectedFilters,
   ]);
 
-  const formatFilterBy = useCallback(
-    (filterParam: string) => {
-      if (!id) {
-        return `filter.${filterParam}`;
-      }
-
-      return `filter_${id}.${filterParam}`;
-    },
-    [id],
-  );
+  const formatFilterBy = useCallback((filterParam: string) => {
+    return `filter.${filterParam}`;
+  }, []);
 
   const handleShowDropdownMenu = useCallback(() => {
     setIsShowDropdownMenu(true);

@@ -1,22 +1,20 @@
 import { TFunction } from "i18next";
-import { boolean, ref, string } from "yup";
+import { ref, string } from "yup";
 
 import { AuthRegisterFormDataType } from "@interfaces/Common";
 import { generateFormSchema } from "@utils/Helpers/commonHelper";
 
 const registerFormSchema = (t: TFunction) =>
   generateFormSchema<AuthRegisterFormDataType>({
-    firstName: string().required(t("firstNameRequired") ?? ""),
-    lastName: string().required(t("lastNameRequired") ?? ""),
-    phone: string().required(t("phoneRequired")),
+    username: string().required(t("usernameRequired") ?? ""),
+    fullname: string().required(t("fullnameRequired") ?? ""),
     email: string()
       .email(t("emailInvalid") ?? "")
       .required(t("emailRequired") ?? ""),
     password: string().required(t("passwordRequired") ?? ""),
-    passwordConfirmation: string()
+    password_confirmation: string()
       .oneOf([ref("password")], t("passwordConfirmationNotMatch") ?? "")
       .required(t("passwordConfirmationRequired") ?? ""),
-    isAcceptedTerms: boolean(),
   });
 
 export { registerFormSchema };

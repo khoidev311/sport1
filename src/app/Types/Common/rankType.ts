@@ -1,8 +1,10 @@
-import { BaseDataType } from "./commonType";
+import { Key } from "react";
+
+import { BaseDataType, Nullable } from "./commonType";
+import { LeagueDataType } from "./leagueType";
 import { TeamDataType } from "./teamType";
 
 export interface RankDataType extends BaseDataType {
-  uuid: number;
   team: TeamDataType;
   rank: number;
   total_match: number;
@@ -13,4 +15,12 @@ export interface RankDataType extends BaseDataType {
   efficiency: number;
   point: number;
   history_match: string[];
+  league: LeagueDataType;
+}
+
+interface RankFormConverseType extends Omit<RankDataType, "team"> {}
+
+export interface RankFormDataType extends Nullable<Partial<Omit<RankFormConverseType, "league">>> {
+  team: Key;
+  league: Key;
 }

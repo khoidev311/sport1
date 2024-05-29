@@ -1,55 +1,36 @@
-import { ResponseDataType } from "@interfaces/Common";
-import { FixtureDataType } from "@interfaces/Common/fixrureType";
+import { Key } from "react";
 
-import { fakeDataTeamLaliga, fakeDataTeamPremierLeague } from "./teamService";
+import { FIXTURE_API_PATH } from "@constants/apiConstant";
+import { BaseListQueryType, ResponseDataType } from "@interfaces/Common";
+import { FixtureDataType, FixtureFormDataType } from "@interfaces/Common/fixrureType";
+import { axiosInstance } from "@utils/Axios";
 
-const getFakeDataLaliga = (pageSize: number): FixtureDataType[] =>
-  Array.from({ length: pageSize }).map((_, index) => ({
-    uuid: index,
-    host_team: fakeDataTeamLaliga[index],
-    guest_team: fakeDataTeamLaliga[index + 1],
-    start_time: "2024-03-26T05:30:01+00:00",
-    league: {
-      uuid: 2,
-      name: "Laliga",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOGRAT9_cBRZVyxnwwxDlQk0HuBGLTXtSq8gcTZ7iJxw&s",
-    },
-  }));
+const getFixtures = async (params?: BaseListQueryType): Promise<ResponseDataType<FixtureDataType[]>> => {
+  const response = await axiosInstance.get(FIXTURE_API_PATH.FIXTURES, { params });
+  return {
+    data: response.data.data,
+    meta: response.data.meta,
+  };
+};
 
-const getFakeDataPrimierLeague = (pageSize: number): FixtureDataType[] =>
-  Array.from({ length: pageSize }).map((_, index) => ({
-    uuid: index,
-    host_team: fakeDataTeamPremierLeague[index],
-    guest_team: fakeDataTeamPremierLeague[index + 1],
-    start_time: "2024-03-26T05:30:01+00:00",
-    league: {
-      uuid: 1,
-      name: "Primier League",
-      logo: "https://seeklogo.com/images/P/premier-league-new-logo-D22A0CE87E-seeklogo.com.png",
-    },
-  }));
+const getFixtureByLeagueId = async (id: Key): Promise<ResponseDataType<FixtureDataType[]>> => {
+  const response = await axiosInstance.get(FIXTURE_API_PATH.FIXTURES_BY_LEAGUE_ID(id));
+  return {
+    data: response.data.data,
+    meta: response.data.meta,
+  };
+};
 
-const getFixtures = async (leagueId: number) =>
-  new Promise<ResponseDataType<FixtureDataType[]>>((resolve) => {
-    setTimeout(() => {
-      let fakeData: FixtureDataType[];
-      switch (leagueId) {
-        case 1:
-          fakeData = getFakeDataPrimierLeague(10);
-          break;
-        case 2:
-          fakeData = getFakeDataLaliga(10);
-          break;
-        default:
-          fakeData = [];
-      }
-      resolve({
-        data: fakeData,
-        meta: {
-          total: fakeData.length,
-        },
-      });
-    }, 1000);
-  });
+const createFixture = async (data: FixtureFormDataType) => {
+  await axiosInstance.post(FIXTURE_API_PATH.FIXTURES, data);
+};
 
-export { getFixtures };
+const editFixture = async (id: number, data: FixtureFormDataType) => {
+  await axiosInstance.put(FIXTURE_API_PATH.FIXTURES_ID(id), data);
+};
+
+const deleteFixture = async (id: number) => {
+  await axiosInstance.delete(FIXTURE_API_PATH.FIXTURES_ID(id));
+};
+
+export { getFixtures, createFixture, editFixture, deleteFixture, getFixtureByLeagueId };

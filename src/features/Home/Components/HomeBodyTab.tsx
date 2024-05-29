@@ -21,7 +21,7 @@ const HomeBodyTab = ({ activeTab, setActiveTab }: HomeBodyTabProps) => {
         setActiveTab={setActiveTab}
       />
       <HomeBodyTabItem
-        label={t("fixtures")}
+        label={t("fixture")}
         tab={TabFeatureEnum.FIXTURES}
         activeTab={activeTab}
         setActiveTab={setActiveTab}

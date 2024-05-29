@@ -22,7 +22,7 @@ const ModalContent = ({
   children,
   onClose,
 }: ModalContentProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <>
@@ -43,7 +43,7 @@ const ModalContent = ({
             <div className="mt-2 h-1 w-16 rounded-md bg-gray-100" />
           </div>
         )}
-        <div className="pb-8 pt-8">{children}</div>
+        <div className="pb-8 pt-8 w-96 flex gap-6 flex-wrap">{children}</div>
       </div>
       {isShowFooter && (
         <div className="flex items-center justify-end space-x-6 rounded-b-lg bg-gray-50 px-10 py-6">

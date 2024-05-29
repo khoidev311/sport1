@@ -1,7 +1,8 @@
 import { memo, useCallback, useEffect, useState } from "react";
+import { isEmpty } from "lodash";
 
 import { ScoreDataType } from "@interfaces/Common/scoreType";
-import { getScoreById } from "@services/App/scoreService";
+import { getScoreByLeagueId } from "@services/App/scoreService";
 import { LeagueDataType } from "@interfaces/Common/leagueType";
 import { TableContentBodyEmptyItem } from "@components/Table";
 
@@ -18,9 +19,10 @@ const HomeScoreboard = ({ league }: HomeScoreboardProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
+    if (isEmpty(league)) return;
     setIsLoading(true);
     try {
-      const { data } = await getScoreById(league.uuid);
+      const { data } = await getScoreByLeagueId(league._id);
       setScores(data);
     } finally {
       setIsLoading(false);
@@ -33,8 +35,8 @@ const HomeScoreboard = ({ league }: HomeScoreboardProps) => {
   return (
     <div className="h-fit w-full bg-white rounded-md border">
       <HomeScoreboardHeader league={league} />
-      <div className="w-full h-fit px-4">
-        {!isLoading && scores.map((item) => <HomeScoreboardItem key={item.uuid} score={item} />)}
+      <div className="w-full h-fit px-4 ">
+        {!isLoading && scores.map((item) => <HomeScoreboardItem key={item._id} score={item} />)}
         {isLoading &&
           Array.from({ length: 10 }).map((_1, index) => (
             // eslint-disable-next-line react/no-array-index-key

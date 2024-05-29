@@ -11,6 +11,15 @@ export const MY_PATH = {
 
 export const ADMIN_PATH = {
   HOME: "/admin",
+  USER: "/admin/user",
+  ROLE: "/admin/role",
+  CONFIG: "/admin/config",
+  LEAGUE: "/admin/league",
+  TEAM: "/admin/team",
+  SCORE: "/admin/score",
+  FIXTURE: "/admin/fixture",
+  RANKING: "/admin/ranking",
+  BLOG: "/admin/blog",
 };
 
 export const SYSTEM_PATH = {
@@ -36,6 +45,7 @@ export const HOME_PATH = {
   HIGHTLIGHT: "/hightlight",
   NEWS: "/news",
   SCORE: "/scoreboard",
+  SPORT1: "/sport1",
 };
 
 export const PAGE_PATH = {

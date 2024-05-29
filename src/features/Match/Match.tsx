@@ -4,8 +4,8 @@ import { memo, useCallback, useEffect, useState } from "react";
 import useDocumentTitle from "@hooks/useDocumentTitle";
 import useWatchParam from "@hooks/useWatchParam";
 import { ScoreDataType } from "@interfaces/Common/scoreType";
-import { getScoreOfMatchById } from "@services/App/scoreService";
 import { TableContentBodyEmptyItem } from "@components/Table";
+import { getScoreById } from "@services/App/scoreService";
 
 import MatchHeader from "./Components/MatchHeader";
 
@@ -17,11 +17,11 @@ const Match = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
+    if (!fromMatchId) return;
     setIsLoading(true);
     try {
-      if (!fromMatchId) return;
-      const dataScore = await getScoreOfMatchById(Number(fromMatchId));
-      setScores(dataScore);
+      const data = await getScoreById(String(fromMatchId));
+      setScores(data);
     } finally {
       setIsLoading(false);
     }

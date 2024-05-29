@@ -1,13 +1,13 @@
 import { UNPROCESSABLE_ENTITY } from "http-status";
 import { memo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Alert } from "@components/Alert";
 import { Button } from "@components/Button";
-import { Checkbox, Input } from "@components/Form";
+import { Input } from "@components/Form";
 import { AUTH_CODE } from "@constants/codeConstant";
 import { AUTH_PATH } from "@constants/routeConstant";
 import useDocumentTitle from "@hooks/useDocumentTitle";
@@ -18,11 +18,10 @@ import { setUser } from "@slices/commonSlice";
 import { registerFormSchema } from "@auth/Schemas/RegisterFormSchema";
 
 import AuthFormContainer from "../Components/AuthFormContainer";
-import { generateAuthRedirectURL } from "../Utils/GenerateAuthRedirectURL";
 import RegisterFormFooter from "./Components/RegisterFormFooter";
 
 const Register = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [generalError, setGeneralError] = useState<AuthFormGeneralError | null>(null);
@@ -39,8 +38,6 @@ const Register = () => {
   } = useForm<AuthRegisterFormDataType>({
     resolver: registerFormSchema(t),
   });
-
-  const isAcceptedTerms = watch("isAcceptedTerms", false);
   const email = watch("email", "");
 
   const handleSubmit = useFormSubmit((formData) => {
@@ -50,12 +47,11 @@ const Register = () => {
       .register(formData)
       .then((userData) => {
         // const { accessToken, refreshToken, data: userData } = response;
-        const redirectURL = generateAuthRedirectURL([userData.role.slug], searchParams.get("redirect"));
 
         // setAuthToken({ accessToken, refreshToken });
         dispatch(setUser(userData));
 
-        navigate(redirectURL);
+        navigate("/");
       })
       .catch((err) => {
         const { status } = err.response.data;
@@ -156,24 +152,7 @@ const Register = () => {
           disabled={isSubmitting}
           control={control}
         />
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label htmlFor="isAcceptedTerms" className="group flex items-center justify-start space-x-4">
-          <Checkbox
-            name="isAcceptedTerms"
-            className="flex-shrink-0"
-            disabled={isSubmitting}
-            control={control}
-          />
-          <div className="text-sm font-semibold leading-6 text-gray-400">
-            <Trans i18nKey="isAcceptedTerm" t={t}>
-              0
-              <Link to="/" className="ml-1 underline hover:text-black">
-                1
-              </Link>
-            </Trans>
-          </div>
-        </label>
-        <Button type="submit" disabled={isSubmitting || !isAcceptedTerms} isLoading={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
           {t("register")}
         </Button>
       </form>

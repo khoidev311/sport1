@@ -7,9 +7,10 @@ interface FooterLinkItemProps {
   to: string;
   className?: string;
   children: React.ReactNode | React.ReactNode[];
+  isShowArrow?: boolean;
 }
 
-const FooterLinkItem = ({ to, className, children }: FooterLinkItemProps) => {
+const FooterLinkItem = ({ to, className, children, isShowArrow = true }: FooterLinkItemProps) => {
   return (
     <Link
       className={twMerge(
@@ -18,7 +19,7 @@ const FooterLinkItem = ({ to, className, children }: FooterLinkItemProps) => {
       )}
       to={to}
     >
-      <BiChevronRight className="-ml-1.5 mr-1" />
+      {isShowArrow && <BiChevronRight className="-ml-1.5 mr-1" />}
       {children}
     </Link>
   );

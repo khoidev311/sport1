@@ -28,7 +28,7 @@ const BigNews = () => {
     fetchData();
   }, [fetchData]);
   return (
-    <div className="col-span-2 h-fit  rounded-md">
+    <div className="xs:col-span-3 xl:col-span-2 h-fit  rounded-md">
       <div className="w-full h-10 font-bold text-2xl rounded-md mb-2">{t("bigNews")}</div>
       {!isLoading && (
         <Swiper
@@ -40,7 +40,7 @@ const BigNews = () => {
           modules={[Autoplay]}
         >
           {bigNews?.map((item) => (
-            <SwiperSlide key={item.uuid}>
+            <SwiperSlide key={item._id}>
               <BigNewsItem news={item} />
             </SwiperSlide>
           ))}

@@ -33,7 +33,7 @@ const TableFooter = (
   }: TableFooterProps,
   ref: ForwardedRef<unknown>,
 ) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const [showingFrom, setShowingFrom] = useState(1);
   const [showingTo, setShowingTo] = useState(1);

@@ -1,7 +1,6 @@
-export * as adminUserService from "./Admin/userService";
+export * as adminUserService from "./App/userService";
 export * as authService from "./Common/authService";
 export * as configService from "./Common/configService";
-export * as languageService from "./Common/languageService";
 export * as uploadService from "./Common/uploadService";
 export * as scoreService from "./App/scoreService";
 export * as fixtureService from "./App/fixtureService";

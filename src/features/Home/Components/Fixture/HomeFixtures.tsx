@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useState } from "react";
 
 import { FixtureDataType } from "@interfaces/Common/fixrureType";
-import { getFixtures } from "@services/App/fixtureService";
+import { getFixtureByLeagueId } from "@services/App/fixtureService";
 import { LeagueDataType } from "@interfaces/Common/leagueType";
 import { TableContentBodyEmptyItem } from "@components/Table";
 
@@ -18,9 +18,10 @@ const HomeFixtures = ({ league }: HomeFixturesProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
+    if (!league) return;
     setIsLoading(true);
     try {
-      const { data } = await getFixtures(league.uuid);
+      const { data } = await getFixtureByLeagueId(league._id);
       setFixtures(data);
     } finally {
       setIsLoading(false);
@@ -39,7 +40,7 @@ const HomeFixtures = ({ league }: HomeFixturesProps) => {
             // eslint-disable-next-line react/no-array-index-key
             <HomeFixtureItemSkeleton key={index} />
           ))}
-        {!isLoading && fixtures?.map((item) => <HomeFixtureItem key={item.uuid} fixture={item} />)}
+        {!isLoading && fixtures?.map((item) => <HomeFixtureItem key={item._id} fixture={item} />)}
         {!isLoading && fixtures.length < 1 && <TableContentBodyEmptyItem className="w-full h-96" />}
       </div>
     </div>

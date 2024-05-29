@@ -34,12 +34,16 @@ const TeamLogoAndName = ({
             alt={team?.name}
             src={team?.logo}
           />
-          <span className={twMerge("text-sm h-8 flex items-center", teamNameClassName)}>{team?.name}</span>
+          <span className={twMerge("text-sm h-8 flex text-start items-center", teamNameClassName)}>
+            {team?.name}
+          </span>
         </>
       )}
       {type === TeamLogoAndNameEnum.NAME_TO_LOGO && (
         <>
-          <span className={twMerge("text-sm h-8 flex items-center", teamNameClassName)}>{team?.name}</span>
+          <span className={twMerge("text-sm h-8 flex text-end items-center", teamNameClassName)}>
+            {team?.name}
+          </span>
           <img
             className={twMerge("w-8 h-8 object-scale-down", logoClassName)}
             alt={team?.name}
@@ -57,7 +61,7 @@ const TeamLogoAndName = ({
             />
           </div>
           <div className="w-full flex h-1/2 justify-center items-start">
-            <span className={twMerge("text-sm h-8 flex items-center", teamNameClassName)}>{team?.name}</span>
+            <span className={twMerge("text-sm h-8 flex  items-center", teamNameClassName)}>{team?.name}</span>
           </div>
         </>
       )}

@@ -6,9 +6,10 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { LayoutDefault } from "@common/Layout";
+import { LayoutDefault, LayoutSidebarMobile } from "@common/Layout";
 import { DropdownProvider } from "@components/Dropdown";
 import { ErrorBoundary } from "@features/Error";
+import SidebarMobileGuest from "@common/Layout/Components/Sidebar/SidebarMobileGuest";
 
 import CommonRoutes from "./app/Routes/CommonRoutes";
 import { store } from "./app/store";
@@ -28,7 +29,7 @@ const App = () => {
             <Head />
             <QueryClientProvider client={queryClient}>
               <BrowserRouter>
-                <LayoutDefault>
+                <LayoutDefault headerPrefix={<LayoutSidebarMobile sidebar={<SidebarMobileGuest />} />}>
                   <CommonRoutes />
                 </LayoutDefault>
                 <AxiosProvider />

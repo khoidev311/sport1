@@ -6,7 +6,7 @@ export interface ErrorUnknownDetailProps {
 }
 
 const ErrorUnknownDetail = ({ error }: ErrorUnknownDetailProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <code className="break-all rounded-lg bg-gray-50 px-6 py-4">

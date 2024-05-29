@@ -4,7 +4,7 @@ import { LoadingSkeleton } from "@components/Loading";
 
 const HomeSliderScoreItemSkeleton = () => {
   return (
-    <div className="w-72 h-36 border grid grid-cols-3 bg-white rounded-lg">
+    <div className="col-span-1 xs:h-32  md:h-28  xl:h-36 border grid grid-cols-3 bg-white rounded-lg">
       <div className="col-span-2 px-6 py-4 flex items-center justify-center flex-wrap">
         <LoadingSkeleton className="w-full h-6 rounded-full" />
         <LoadingSkeleton className="w-full h-6 rounded-full" />

@@ -27,17 +27,17 @@ const RelatedNews = () => {
     fetchData();
   }, [fetchData]);
   return (
-    <div className="col-span-1">
+    <div className="xs:col-span-3 xl:col-span-1">
       {isLoading ? (
         <LoadingSkeleton className="w-full h-10 bg-white mb-6" />
       ) : (
-        <div className="w-full h-10 font-bold text-2xl rounded-md mb-2 flex items-start">
+        <div className="w-full h-10 font-bold text-2xl rounded-md xs:mt-4 xl:mt-0 mb-2 flex items-start">
           {t("relatedNews")}
         </div>
       )}
       <div className="h-fit overflow-y-clip flex flex-wrap gap-y-6">
         {!isLoading &&
-          relatedNews.map((item) => <NewsItem key={item.uuid} type={NewsItemLayoutEnum.ROW} news={item} />)}
+          relatedNews.map((item) => <NewsItem key={item._id} type={NewsItemLayoutEnum.ROW} news={item} />)}
         {isLoading &&
           Array.from({ length: 3 }).map((_1, index) => (
             // eslint-disable-next-line react/no-array-index-key

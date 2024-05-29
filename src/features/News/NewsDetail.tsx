@@ -29,17 +29,17 @@ const NewsDetail = () => {
     fetchData();
   }, [fetchData]);
   return (
-    <div className="w-full h-fit px-40 bg-gray-50 py-8">
+    <div className="w-full h-fit xs:px-6 md:px-20 xl:px-40 bg-gray-50 py-8">
       <div className="w-full h-full grid grid-cols-3 gap-x-6 mb-6">
         {!isLoading && (
           <div
-            className="col-span-2"
+            className="xs:col-span-3 xl:col-span-2"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: news?.content || "" }}
           />
         )}
         {isLoading && (
-          <div className="col-span-2 h-auto">
+          <div className="xs:col-span-3 xl:col-span-2 h-auto">
             <LoadingSkeleton className="w-full h-full rounded-md bg-white" />
           </div>
         )}

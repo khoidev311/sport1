@@ -1,5 +1,4 @@
 import { AUTH_API_PATH } from "@constants/index";
-import { DataStatusEnum } from "@enums/commonEnum";
 import { UserRoleEnum } from "@enums/userEnum";
 import {
   AuthLoginFormDataType,
@@ -11,18 +10,17 @@ import {
 import { Axios } from "@utils/index";
 
 const fakeUserData: UserDataType = {
-  id: 0,
+  _id: 0,
   email: "garetbale@gmail.com",
-  phone: "0123456780",
-  fullName: "Garet Bale",
+  fullname: "Garet Bale",
   avatar:
     "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcTulTE7UvebqStVIkYIQYE0PcoHMKYN5soWvGCaGI3Ixy1rmwLUIbmPSEUVkGnA27x0",
   role: {
-    id: 1,
-    name: UserRoleEnum.USER,
-    slug: UserRoleEnum.USER,
+    _id: 1,
+    name: UserRoleEnum.ADMIN,
+    slug: UserRoleEnum.ADMIN,
   },
-  status: DataStatusEnum.ACTIVATED,
+  username: "garetbale",
 };
 
 const getMe = async (isRedirectWhenError?: boolean): Promise<UserDataType> => {
@@ -54,14 +52,14 @@ const register = async (data: AuthRegisterFormDataType) =>
       () =>
         resolve({
           ...data,
-          id: 1,
-          fullName: data.firstName.concat(" ", data.lastName),
+          _id: 1,
+          username: "garetbale",
+          fullname: data.fullname,
           role: {
-            id: 2,
+            _id: 2,
             name: UserRoleEnum.USER,
             slug: UserRoleEnum.USER,
           },
-          status: DataStatusEnum.ACTIVATED,
         }),
       1000,
     );

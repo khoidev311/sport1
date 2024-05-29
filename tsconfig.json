@@ -29,9 +29,10 @@
       "@utils/*": ["./src/common/Company/Utils/*"],
       "@common/*": ["./src/common/Company/*"],
       "@auth/*": ["./src/features/Auth/*"],
-      "@features/*": ["./src/common/Company/Features/*"]
+      "@features/*": ["./src/common/Company/Features/*"],
+      "@home/*":["./src/reatures/Home/*"]
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "build", "scripts"]
+  "exclude": ["node_modules", "root", "scripts"]
 }

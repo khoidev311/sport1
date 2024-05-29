@@ -1,25 +1,18 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import { languageService } from "@services/index";
-
-import assistantEn from "./en/assistant.json";
-import companyEn from "./en/company.json";
-
-const currentLanguage = languageService.getPageLanguage();
+import enTranslation from "./en/en.json";
 
 export const resources = {
   en: {
-    company: companyEn,
-    assistant: assistantEn,
+    translation: enTranslation,
   },
 };
 
 i18n
   .use(initReactI18next)
   .init({
-    lng: currentLanguage,
-    ns: ["assistant", "company"],
+    lng: "en",
     interpolation: {
       escapeValue: false,
     },

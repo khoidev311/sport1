@@ -1,7 +1,6 @@
 import axios from "axios";
 import { set } from "lodash";
 
-import { getPageLanguage } from "@services/Common/languageService";
 import { authService } from "@services/index";
 
 import { normalizeQuery } from "../Helpers/requestHelper";
@@ -21,9 +20,9 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    "Accept-Language": getPageLanguage(),
+    "Accept-Language": "en-US",
   },
-  withCredentials: true,
+  withCredentials: false,
 });
 
 axiosInstance.interceptors.request.use(

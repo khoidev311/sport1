@@ -6,32 +6,34 @@ import Table from "@components/Table/Table";
 import TableImageColumn from "@components/Table/TableImageColumn";
 import TableRowActionSkeleton from "@components/Table/TableRowActionSkeleton";
 import { BaseListQueryType, ResponseDataType, UserDataType } from "@interfaces/Common";
+import { TableProps } from "@components/Table";
 
 import AdminUserTableRowAction, { AdminUserTableRowActionProps } from "./TableRowAction";
 
-interface AdminUserTableProps extends Omit<AdminUserTableRowActionProps, "id"> {
+interface AdminUserTableProps extends Omit<TableProps, "columns">, Omit<AdminUserTableRowActionProps, "id"> {
   data: UserDataType[];
   isLoading: boolean;
   onGetAll: (params?: BaseListQueryType) => Promise<ResponseDataType<UserDataType[]>>;
 }
 
-const AdminUserTable = ({ data, isLoading, onGetAll, onClickEdit, onClickDelete }: AdminUserTableProps) => {
-  const { t } = useTranslation("admin");
+const AdminUserTable = ({
+  data,
+  isLoading,
+  onGetAll,
+  onClickEdit,
+  onClickDelete,
+  ...props
+}: AdminUserTableProps) => {
+  const { t } = useTranslation();
 
   const columnHelper = useMemo(() => createColumnHelper<UserDataType>(), []);
 
   const columns: Array<ColumnDef<UserDataType, string>> = useMemo(
     () => [
-      columnHelper.accessor((row) => String(row.id), {
-        id: "id",
-        header: t("id"),
-      }),
       columnHelper.display({
         id: "avatar",
         header: t("avatar"),
-        cell: (props) => (
-          <TableImageColumn src={props.row.original.avatar} alt={props.row.original.fullName} />
-        ),
+        cell: (cell) => <TableImageColumn src={cell.row.original.avatar} alt={cell.row.original.fullname} />,
         meta: {
           skeleton: <TableImageColumn skeleton />,
         },
@@ -44,24 +46,20 @@ const AdminUserTable = ({ data, isLoading, onGetAll, onClickEdit, onClickDelete 
           getFilterOptions: onGetAll,
         },
       }),
-      columnHelper.accessor((row) => row.fullName, {
-        id: "fullName",
+      columnHelper.accessor((row) => row.fullname, {
+        id: "fullname",
         header: t("fullName"),
         meta: {
-          filterBy: "fullName",
+          filterBy: "fullname",
           filterLabel: t("fullName"),
           getFilterOptions: onGetAll,
         },
       }),
-      columnHelper.accessor((row) => row.phone, {
-        id: "phone",
-        header: t("phone"),
-      }),
       columnHelper.display({
         id: "actions",
-        cell: (props) => (
+        cell: (cell) => (
           <AdminUserTableRowAction
-            id={props.row.original.id}
+            id={cell.row.original._id}
             onClickEdit={onClickEdit}
             onClickDelete={onClickDelete}
           />
@@ -75,12 +73,7 @@ const AdminUserTable = ({ data, isLoading, onGetAll, onClickEdit, onClickDelete 
   );
 
   return (
-    <Table
-      data={data}
-      meta={null}
-      columns={columns as Array<ColumnDef<UserDataType>>}
-      isLoading={isLoading}
-    />
+    <Table data={data} columns={columns as Array<ColumnDef<UserDataType>>} isLoading={isLoading} {...props} />
   );
 };
 

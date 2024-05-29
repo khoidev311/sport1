@@ -13,17 +13,17 @@ import { setFormError } from "@utils/Helpers/errorHelper";
 
 interface AdminUserModificationModalProps extends ModalProps {
   user: UserDataType | null;
-  onCreate: (user: UserFormDataType) => Promise<UserFormDataType>;
+  onCreate: (data: UserFormDataType) => Promise<void>;
   onCreated: () => void;
-  onEdit: (id: number, user: UserFormDataType) => Promise<UserFormDataType>;
+  onEdit: (id: number, data: UserFormDataType) => Promise<void>;
   onEdited: () => void;
 }
 
 const DEFAULT_VALUE: UserFormDataType = {
   email: "",
-  phone: "",
-  password: "",
-  fullName: "",
+  fullname: "",
+  username: "",
+  avatar: "",
 };
 
 const AdminUserModificationModal = ({
@@ -36,7 +36,7 @@ const AdminUserModificationModal = ({
   onEdited,
   ...props
 }: AdminUserModificationModalProps) => {
-  const { t } = useTranslation("admin");
+  const { t } = useTranslation();
   const toast = useToast();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,7 +59,7 @@ const AdminUserModificationModal = ({
     async (formData: UserFormDataType) => {
       try {
         await onCreate(formData);
-        toast.success(t("addUserSuccessfully"));
+        toast.success(t("addSuccessfully"));
         onCreated();
         onClose();
       } catch (error) {
@@ -77,8 +77,8 @@ const AdminUserModificationModal = ({
     async (formData: UserFormDataType) => {
       if (!user) return;
       try {
-        await onEdit(user.id as number, formData);
-        toast.success(t("edit"));
+        await onEdit(user._id as number, formData);
+        toast.success(t("editSuccessfully"));
         onEdited();
         onClose();
       } catch (error) {
@@ -112,7 +112,7 @@ const AdminUserModificationModal = ({
     setIsSubmitting(false);
 
     if (user) {
-      reset({ ...user, password: "" });
+      reset({ ...user });
       return;
     }
 
@@ -129,23 +129,26 @@ const AdminUserModificationModal = ({
       onConfirm={handleSubmit}
       {...props}
     >
-      <Input className="block" control={control} disabled={isSubmitting} label={t("email")} name="email" />
       <Input
-        className="block"
-        control={control}
-        disabled={isSubmitting}
-        label={t("password")}
-        name="password"
-        type="password"
-        autoSave="off"
-      />
-      <Input className="block" control={control} disabled={isSubmitting} label={t("phone")} name="phone" />
-      <Input
-        className="block"
+        className="block w-full"
         control={control}
         disabled={isSubmitting}
         label={t("fullName")}
-        name="fullName"
+        name="fullname"
+      />
+      <Input
+        className="block w-full"
+        control={control}
+        disabled={isSubmitting}
+        label={t("username")}
+        name="username"
+      />
+      <Input
+        className="block w-full"
+        control={control}
+        disabled={isSubmitting}
+        label={t("email")}
+        name="email"
       />
       <UploadInput
         name="avatar"
@@ -154,6 +157,7 @@ const AdminUserModificationModal = ({
         multiple={false}
         label={t("avatar")}
         placeholder={t("chooseAvatar")}
+        inputString
       />
     </Modal>
   );

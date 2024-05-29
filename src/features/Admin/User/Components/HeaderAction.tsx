@@ -9,7 +9,7 @@ interface AdminUserHeaderActionsProps {
 }
 
 const AdminUserHeaderAction = ({ onClickAdd }: AdminUserHeaderActionsProps) => {
-  const { t } = useTranslation("admin");
+  const { t } = useTranslation();
 
   return (
     <Button className="rounded-md shadow-none" size="sm" onClick={onClickAdd}>

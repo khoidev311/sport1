@@ -45,7 +45,7 @@ const UncontrolledUploadInput = ({
   placeholder,
   ...props
 }: UncontrolledUploadInputProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
   const toast = useToast();
 
   const inputFileRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -141,7 +141,7 @@ const UncontrolledUploadInput = ({
   return (
     <div
       className={twMerge(
-        "relative block cursor-text rounded-lg border-2 border-gray-100 bg-white px-4 py-4 ring-inset transition-colors duration-100 hover:border-blue-500",
+        "relative w-full block cursor-text rounded-lg border-2 border-gray-100 bg-white px-4 py-4 ring-inset transition-colors duration-100 hover:border-blue-500",
         disabled && "cursor-default bg-gray-50 ring-gray-100 hover:border-gray-100",
       )}
     >

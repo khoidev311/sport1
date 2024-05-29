@@ -30,7 +30,7 @@ const DatePickerDropdown = ({
   onChangeRangeDate,
   onHide,
 }: DatePickerDropdownProps) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 

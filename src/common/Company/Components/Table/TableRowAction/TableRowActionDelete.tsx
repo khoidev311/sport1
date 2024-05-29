@@ -10,7 +10,7 @@ const TableRowActionDelete = <T extends unknown>({
   isDisabled,
   onClick,
 }: Pick<ButtonTableRowActionProps<T>, "data" | "isDisabled" | "onClick">) => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   return (
     <TableRowAction

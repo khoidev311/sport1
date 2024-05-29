@@ -37,7 +37,7 @@ const LayoutSidebarMobile = ({ sidebar }: LayoutSidebarMobileProps) => {
       </button>
       <div
         className={twMerge(
-          "fixed inset-x-0 left-0 top-20 z-50 h-fit-layout -translate-x-full transform bg-black bg-opacity-50 duration-100",
+          "fixed inset-x-0 left-0 top-16 z-50 h-fit-layout -translate-x-full transform bg-black bg-opacity-50 duration-100",
           isShowOverlay && "translate-x-0",
         )}
         role="button"

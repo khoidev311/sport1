@@ -7,7 +7,7 @@ import HomeSliderScore from "./Components/Slider/HomeSliderScore";
 import HomeBodyContainer from "./Components/HomeBodyContainer";
 
 const Home = () => {
-  const { t } = useTranslation("company");
+  const { t } = useTranslation();
 
   useDocumentTitle(t("home"));
 
