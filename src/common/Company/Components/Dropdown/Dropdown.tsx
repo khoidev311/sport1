@@ -48,7 +48,7 @@ const Dropdown = ({
     setIsShowDropdownMenu(false);
   }, []);
 
-  const handleClickOutside = useCallback((e: MouseEvent) => {
+  const handleClickOutside = useCallback((e: MouseEvent | TouchEvent) => {
     const target = e.target as HTMLElement;
     const parentElement = parentRef.current;
 

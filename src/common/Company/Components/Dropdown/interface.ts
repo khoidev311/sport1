@@ -14,7 +14,7 @@ export interface DropdownMenuProps extends BaseDropdownMenuProps {
   parentRef: RefObject<HTMLDivElement>;
   position?: "left" | "right" | "center";
   calculatePosition?: (parent: HTMLDivElement, menu: HTMLDivElement) => Partial<DOMRect> | undefined;
-  onClickOutside: (e: MouseEvent) => void;
+  onClickOutside: (event: MouseEvent | TouchEvent) => void;
 }
 
 export interface DropdownProps
