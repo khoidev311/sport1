@@ -13,7 +13,7 @@ interface HomeBodyTabProps {
 const HomeBodyTab = ({ activeTab, setActiveTab }: HomeBodyTabProps) => {
   const { t } = useTranslation();
   return (
-    <div className="w-full h-12 gap-x-4 flex items-center justify-start">
+    <div className="w-full h-12 xs:gap-x-0 md:gap-x-4 flex items-center justify-start">
       <HomeBodyTabItem
         label={t("scoreboard")}
         tab={TabFeatureEnum.SCOREBOARD}

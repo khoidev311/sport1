@@ -1,9 +1,12 @@
 import { memo, useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { isEmpty } from "lodash";
 
 import { LeagueDataType } from "@interfaces/Common/leagueType";
 import { RankDataType } from "@interfaces/Common/rankType";
 import { TableContentBodyEmptyItem } from "@components/Table";
 import { getRankByLeagueId } from "@services/App/rankService";
+import useToast from "@hooks/useToast";
 
 import HomeRankingItem from "./HomeRankingItem";
 import HomeRankingHeader from "./HomeRankingHeader";
@@ -14,19 +17,24 @@ interface HomeRankingProps {
 }
 
 const HomeRanking = ({ league }: HomeRankingProps) => {
+  const { t } = useTranslation();
   const [ranking, setRanking] = useState<RankDataType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const toast = useToast();
   const fetchData = useCallback(async () => {
-    if (!league) return;
+    if (isEmpty(league)) {
+      return;
+    }
     setIsLoading(true);
     try {
       const { data } = await getRankByLeagueId(league._id);
       setRanking(data);
+    } catch {
+      toast.error(t("unknown"));
     } finally {
       setIsLoading(false);
     }
-  }, [league]);
+  }, [league, toast, t]);
 
   useEffect(() => {
     fetchData();

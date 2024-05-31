@@ -1,9 +1,12 @@
 import { memo, useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { isEmpty } from "lodash";
 
 import { FixtureDataType } from "@interfaces/Common/fixrureType";
 import { getFixtureByLeagueId } from "@services/App/fixtureService";
 import { LeagueDataType } from "@interfaces/Common/leagueType";
 import { TableContentBodyEmptyItem } from "@components/Table";
+import useToast from "@hooks/useToast";
 
 import HomeFixtureHeader from "./HomeFixtureHeader";
 import HomeFixtureItem from "./HomeFixtureItem";
@@ -14,19 +17,24 @@ interface HomeFixturesProps {
 }
 
 const HomeFixtures = ({ league }: HomeFixturesProps) => {
+  const { t } = useTranslation();
   const [fixtures, setFixtures] = useState<FixtureDataType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const toast = useToast();
   const fetchData = useCallback(async () => {
-    if (!league) return;
+    if (isEmpty(league)) {
+      return;
+    }
     setIsLoading(true);
     try {
       const { data } = await getFixtureByLeagueId(league._id);
       setFixtures(data);
+    } catch {
+      toast.error(t("unknown"));
     } finally {
       setIsLoading(false);
     }
-  }, [league]);
+  }, [league, toast, t]);
 
   useEffect(() => {
     fetchData();

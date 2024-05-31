@@ -49,12 +49,12 @@ export const CONFIG_API_PATH = {
 };
 
 export const AUTH_API_PATH = {
-  LOGIN: "auth/login",
-  REGISTER: "auth/register",
-  FORGET_PASSWORD: "auth/forget-password",
-  RESET_PASSWORD: "auth/reset-password",
-  REFRESH_TOKEN: "v1/access-token",
-  ME: "auth/me",
+  LOGIN: "api/auth/login",
+  REGISTER: "api/auth/register",
+  FORGET_PASSWORD: "api/auth/forget-password",
+  RESET_PASSWORD: "api/auth/reset-password",
+  REFRESH_TOKEN: "api/auth/refresh-token",
+  ME: "api/auth/me",
 };
 
 export const COMMON_API_PATH = {

@@ -1,6 +1,14 @@
 import React, { memo } from "react";
 import { AiOutlineWhatsApp } from "react-icons/ai";
-import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiTwitter, FiYoutube } from "react-icons/fi";
+import {
+  FiFacebook,
+  FiInstagram,
+  FiLinkedin,
+  FiMail,
+  FiPhoneCall,
+  FiTwitter,
+  FiYoutube,
+} from "react-icons/fi";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 import { IconBaseProps } from "react-icons/lib";
 import { RiSoundcloudLine, RiTelegramLine } from "react-icons/ri";
@@ -14,13 +22,14 @@ const SocialIcon = ({ hostname, children, ...props }: SocialIconProps) => {
   const icons = {
     facebook: <FiFacebook />,
     youtube: <FiYoutube />,
-    gmail: <FiMail />,
+    email: <FiMail />,
     twitter: <FiTwitter />,
     instagram: <FiInstagram />,
     soundcloud: <RiSoundcloudLine />,
     linkedin: <FiLinkedin />,
     whatsapp: <AiOutlineWhatsApp />,
     telegram: <RiTelegramLine />,
+    phone: <FiPhoneCall />,
     default: <HiOutlineGlobeAlt />,
   };
 

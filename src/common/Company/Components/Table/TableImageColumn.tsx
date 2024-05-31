@@ -34,7 +34,7 @@ const TableImageColumn = ({
         />
       )}
       {!skeleton && !src && alt && (
-        <span className="text-lg w-fit h-fit font-semibold">{alt?.slice(0, 1)}</span>
+        <span className="text-lg w-fit h-fit uppercase font-semibold">{alt?.slice(0, 1)}</span>
       )}
     </div>
   );

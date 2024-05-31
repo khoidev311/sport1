@@ -185,5 +185,7 @@
   "draw":"Draw",
   "totalMatch":"Total Match",
   "efficiency":"Efficiency",
-  "goal":"Goal"
+  "goal":"Goal",
+  "somethingWentWrong":"Something went wrong",
+  "tryAgain":"Try again"
 }

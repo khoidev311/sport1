@@ -14,18 +14,20 @@ const HomeScoreboardItem = ({ score }: HomeScoreboardItemProps) => {
       <div className="xs:col-span-3 md:col-span-2 grid grid-cols-8 h-fit ">
         <div className="col-span-3 flex justify-end">
           <TeamLogoAndName
-            teamNameClassName="font-semibold xs:text-sm md:text-md text-center text-ellipsis line-clamp-2 break-words"
+            teamNameClassName="font-semibold xs:text-xs md:text-base text-end text-ellipsis xs:line-clamp-2 md:line-clamp-1 xs:h-fit md:h-6 break-words"
             type={TeamLogoAndNameEnum.NAME_TO_LOGO}
             team={score.host_team}
             containerClassName="w-fit"
           />
         </div>
         <div className="col-span-2 flex justify-center">
-          <span className="bg-gray-600 font-bold text-xl text-white py-1 px-2 rounded-md">{score.score}</span>
+          <span className="bg-gray-600 font-bold xs:text-md md:text-xl text-white py-1 px-2 rounded-md">
+            {score.score}
+          </span>
         </div>
         <div className="col-span-3 flex justify-start ">
           <TeamLogoAndName
-            teamNameClassName="font-semibold xs:text-sm md:text-md text-center text-ellipsis line-clamp-2 break-words"
+            teamNameClassName="font-semibold xs:text-xs md:text-base text-start text-ellipsis xs:line-clamp-2 md:line-clamp-1 xs:h-fit md:h-6 break-words"
             type={TeamLogoAndNameEnum.LOGO_TO_NAME}
             team={score.guest_team}
             containerClassName="w-fit"

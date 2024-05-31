@@ -1,10 +1,12 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { isEmpty } from "lodash";
+import { useTranslation } from "react-i18next";
 
 import { ScoreDataType } from "@interfaces/Common/scoreType";
 import { getScoreByLeagueId } from "@services/App/scoreService";
 import { LeagueDataType } from "@interfaces/Common/leagueType";
 import { TableContentBodyEmptyItem } from "@components/Table";
+import useToast from "@hooks/useToast";
 
 import HomeScoreboardItem from "./HomeScoreboardItem";
 import HomeScoreboardHeader from "./HomeScoreboardHeader";
@@ -15,19 +17,24 @@ interface HomeScoreboardProps {
 }
 
 const HomeScoreboard = ({ league }: HomeScoreboardProps) => {
+  const { t } = useTranslation();
   const [scores, setScores] = useState<ScoreDataType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const toast = useToast();
   const fetchData = useCallback(async () => {
-    if (isEmpty(league)) return;
+    if (isEmpty(league)) {
+      return;
+    }
     setIsLoading(true);
     try {
       const { data } = await getScoreByLeagueId(league._id);
       setScores(data);
+    } catch {
+      toast.error(t("unknown"));
     } finally {
       setIsLoading(false);
     }
-  }, [league]);
+  }, [league, toast, t]);
 
   useEffect(() => {
     fetchData();
