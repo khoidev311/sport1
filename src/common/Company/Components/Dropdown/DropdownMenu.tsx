@@ -132,7 +132,7 @@ const DropdownMenu = ({
     };
   }, [setDropdownPosition]);
 
-  useOnClickOutside(menuRef, onClickOutside);
+  useOnClickOutside(menuRef, onClickOutside as unknown as any);
 
   if (!isShow && !isForceRender) {
     return null;
