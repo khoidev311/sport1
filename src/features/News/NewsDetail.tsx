@@ -5,6 +5,8 @@ import { isNull } from "lodash";
 import { NewsDataType } from "@interfaces/Common/newsType";
 import { getNewsById } from "@services/App/newsServive";
 import { LoadingSkeleton } from "@components/Loading";
+import useSelector from "@hooks/useSelector";
+import { appNameConfigSelector } from "@selectors/commonSelector";
 
 import RelatedNews from "./Detail/RelatedNews";
 
@@ -13,6 +15,7 @@ const NewsDetail = () => {
   const path = location.pathname;
   const [news, setNews] = useState<NewsDataType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const appName = useSelector(appNameConfigSelector);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -28,6 +31,15 @@ const NewsDetail = () => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  useEffect(() => {
+    window.document.title = `${news?.title} | ${appName}`;
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [news, appName]);
+
   return (
     <div className="w-full h-fit xs:px-6 md:px-20 xl:px-40 bg-gray-50 py-8">
       <div className="w-full h-full grid grid-cols-3 gap-x-6 mb-6">

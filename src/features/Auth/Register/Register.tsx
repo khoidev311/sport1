@@ -2,7 +2,6 @@ import { UNPROCESSABLE_ENTITY } from "http-status";
 import { memo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Alert } from "@components/Alert";
@@ -13,7 +12,7 @@ import { AUTH_PATH } from "@constants/routeConstant";
 import useDocumentTitle from "@hooks/useDocumentTitle";
 import { AuthFormGeneralError, AuthRegisterFormDataType } from "@interfaces/Common";
 import { authService } from "@services/index";
-import { setUser } from "@slices/commonSlice";
+import { setAuthToken } from "@services/Common/authService";
 
 import { registerFormSchema } from "@auth/Schemas/RegisterFormSchema";
 
@@ -26,8 +25,6 @@ const Register = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [generalError, setGeneralError] = useState<AuthFormGeneralError | null>(null);
   const [searchParams] = useSearchParams();
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const {
@@ -45,12 +42,9 @@ const Register = () => {
 
     authService
       .register(formData)
-      .then((userData) => {
-        // const { accessToken, refreshToken, data: userData } = response;
-
-        // setAuthToken({ accessToken, refreshToken });
-        dispatch(setUser(userData));
-
+      .then((data) => {
+        const { access_token: accessToken, refresh_token: refreshToken } = data;
+        setAuthToken({ access_token: accessToken, refresh_token: refreshToken });
         navigate("/");
       })
       .catch((err) => {
@@ -101,24 +95,23 @@ const Register = () => {
             )}
           </Alert>
         )}
-        <div className="grid grid-cols-2 gap-6">
-          <Input
-            type="text"
-            label={t("firstName")}
-            name="firstName"
-            className="block"
-            disabled={isSubmitting}
-            control={control}
-          />
-          <Input
-            type="text"
-            label={t("lastName")}
-            name="lastName"
-            className="block"
-            disabled={isSubmitting}
-            control={control}
-          />
-        </div>
+        <Input
+          type="text"
+          label={t("fullName")}
+          name="fullname"
+          className="block"
+          disabled={isSubmitting}
+          control={control}
+        />
+        <Input
+          type="text"
+          label={t("username")}
+          name="username"
+          className="block"
+          disabled={isSubmitting}
+          control={control}
+        />
+
         <Input
           type="text"
           label={t("email")}
@@ -128,26 +121,9 @@ const Register = () => {
           control={control}
         />
         <Input
-          type="text"
-          label={t("phone")}
-          id="phone"
-          name="phone"
-          className="block"
-          disabled={isSubmitting}
-          control={control}
-        />
-        <Input
           type="password"
           label={t("password")}
           name="password"
-          className="block"
-          disabled={isSubmitting}
-          control={control}
-        />
-        <Input
-          type="password"
-          label={t("passwordConfirmation")}
-          name="passwordConfirmation"
           className="block"
           disabled={isSubmitting}
           control={control}

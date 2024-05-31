@@ -39,7 +39,7 @@ const SidebarLink = ({ className }: SidebarLinkProps) => {
         {t("news")}
       </FooterLinkItem>
       <FooterLinkItem
-        to={HOME_PATH.HIGHTLIGHT}
+        to={HOME_PATH.HIGHLIGHT}
         isShowArrow={false}
         className="mb-0.5 rounded-md font-semibold p-2 hover:bg-gray-200 hover:text-primary-600"
       >

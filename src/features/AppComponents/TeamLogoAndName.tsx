@@ -61,7 +61,7 @@ const TeamLogoAndName = ({
             />
           </div>
           <div className="w-full flex h-1/2 justify-center items-start">
-            <span className={twMerge("text-sm h-8 flex  items-center", teamNameClassName)}>{team?.name}</span>
+            <span className={twMerge("text-sm h-8 flex items-center", teamNameClassName)}>{team?.name}</span>
           </div>
         </>
       )}

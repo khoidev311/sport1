@@ -42,7 +42,7 @@ export const HOME_PATH = {
   HOME: "/",
   NOT_FOUND: "*",
   CLUB: "/club",
-  HIGHTLIGHT: "/hightlight",
+  HIGHLIGHT: "/highlight",
   NEWS: "/news",
   SCORE: "/scoreboard",
   SPORT1: "/sport1",

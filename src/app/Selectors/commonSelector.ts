@@ -12,7 +12,7 @@ export const logoConfigSelector = createSelector(
 
 export const appNameConfigSelector = createSelector(
   (state: RootState) => state.common.configs.find((config) => config.key === ConfigKeyEnum.APP_NAME),
-  (appName) => appName?.value ?? process.env.REACT_APP_NAME,
+  (appName) => appName?.value ?? (process.env.REACT_APP_NAME || "SPORT1 - By khoidev311"),
 );
 
 export const configSelector = createSelector(

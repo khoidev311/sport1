@@ -15,7 +15,7 @@ const HomeRoutes = () => {
     <Routes>
       <Route path={HOME_PATH.HOME} element={<Home />} />
       <Route path={HOME_PATH.SPORT1} element={<Home />} />
-      <Route path={HOME_PATH.HIGHTLIGHT} element={<HomeBlankPage title={t("hightlight")} />} />
+      <Route path={HOME_PATH.HIGHLIGHT} element={<HomeBlankPage title={t("hightlight")} />} />
       <Route path={HOME_PATH.CLUB} element={<HomeBlankPage title={t("club")} />} />
       <Route path={HOME_PATH.CONTACT} element={<HomeBlankPage title={t("contact")} />} />
       <Route path={HOME_PATH.NOT_FOUND} element={<ErrorNotFound />} />

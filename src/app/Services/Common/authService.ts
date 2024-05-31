@@ -1,5 +1,4 @@
 import { AUTH_API_PATH } from "@constants/index";
-import { UserRoleEnum } from "@enums/userEnum";
 import {
   AuthLoginFormDataType,
   AuthRegisterFormDataType,
@@ -7,63 +6,25 @@ import {
   AuthTokenType,
   UserDataType,
 } from "@interfaces/Common";
-import { Axios } from "@utils/index";
+import { Axios, axiosInstance } from "@utils/index";
 
-const fakeUserData: UserDataType = {
-  _id: 0,
-  email: "garetbale@gmail.com",
-  fullname: "Garet Bale",
-  avatar:
-    "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcTulTE7UvebqStVIkYIQYE0PcoHMKYN5soWvGCaGI3Ixy1rmwLUIbmPSEUVkGnA27x0",
-  role: {
-    _id: 1,
-    name: UserRoleEnum.ADMIN,
-    slug: UserRoleEnum.ADMIN,
-  },
-  username: "garetbale",
+const register = async (data: AuthRegisterFormDataType) => {
+  const response = await axiosInstance.post(AUTH_API_PATH.REGISTER, data);
+  return response.data;
 };
 
 const getMe = async (isRedirectWhenError?: boolean): Promise<UserDataType> => {
-  // eslint-disable-next-line no-console
-  console.log("getMe", isRedirectWhenError);
+  const response = await axiosInstance.get(AUTH_API_PATH.ME, {
+    redirectWhenError: isRedirectWhenError,
+  });
 
-  // const response = await Axios.instance.get(AUTH_API_PATH.ME, {
-  //   params: {
-  //     expand: ["role", "city", "country"],
-  //   },
-  //   redirectWhenError: isRedirectWhenError,
-  // });
-
-  // return response.data.data;
-
-  return Promise.resolve(fakeUserData);
+  return response.data;
 };
 
-const loginWithEmailAndPassword = async (data: AuthLoginFormDataType) =>
-  new Promise<UserDataType>((resolve) => {
-    setTimeout(() => {
-      resolve({ ...fakeUserData, email: data.email });
-    }, 1000);
-  });
-
-const register = async (data: AuthRegisterFormDataType) =>
-  new Promise<UserDataType>((resolve) => {
-    setTimeout(
-      () =>
-        resolve({
-          ...data,
-          _id: 1,
-          username: "garetbale",
-          fullname: data.fullname,
-          role: {
-            _id: 2,
-            name: UserRoleEnum.USER,
-            slug: UserRoleEnum.USER,
-          },
-        }),
-      1000,
-    );
-  });
+const loginWithEmailAndPassword = async (data: AuthLoginFormDataType) => {
+  const response = await axiosInstance.post(AUTH_API_PATH.LOGIN, data);
+  return response.data;
+};
 
 const forgetPassword = async (email: string) =>
   new Promise((resolve) => {
@@ -112,7 +73,7 @@ const getAccessToken = () => {
     return null;
   }
 
-  return authToken.accessToken;
+  return authToken.access_token;
 };
 
 const getRefreshToken = () => {
@@ -122,7 +83,7 @@ const getRefreshToken = () => {
     return null;
   }
 
-  return authToken.refreshToken;
+  return authToken.refresh_token;
 };
 
 const refreshAccessToken = async (refreshToken: string) => {

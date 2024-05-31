@@ -8,6 +8,7 @@ import { TableContentBodyEmptyItem } from "@components/Table";
 import { OptionLegacy, SelectLegacy } from "@components/Form";
 import { SelectPositionEnum } from "@enums/commonEnum";
 import { LoadingSkeleton } from "@components/Loading";
+import useToast from "@hooks/useToast";
 
 import HomeLeagueItem from "./HomeLeagueItem";
 import HomeLeagueItemSkeleton from "./HomeLeagueItemSkeleton";
@@ -21,7 +22,7 @@ const HomeLeagues = ({ league, onSelectLeague }: HomeLeaguesProps) => {
   const { t } = useTranslation();
   const [leagues, setLeagues] = useState<LeagueDataType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const toast = useToast();
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -30,10 +31,12 @@ const HomeLeagues = ({ league, onSelectLeague }: HomeLeaguesProps) => {
       if (data) {
         onSelectLeague(first(data) || ({} as LeagueDataType));
       }
+    } catch {
+      toast.error(t("unknown"));
     } finally {
       setIsLoading(false);
     }
-  }, [onSelectLeague]);
+  }, [onSelectLeague, toast, t]);
 
   useEffect(() => {
     fetchData();
@@ -41,11 +44,11 @@ const HomeLeagues = ({ league, onSelectLeague }: HomeLeaguesProps) => {
 
   return (
     <div className="xs:col-span-4 lg:col-span-1 bg-white md:block  xs:flex xs:justify-between rounded-lg h-fit border last:rounded-b-md">
-      <div className="w-full border-b h-12 px-3 flex items-center py-2 font-semibold">
+      <div className="w-full border-b h-12 px-3 md:text-base xs:text-sm flex items-center py-2 font-semibold">
         {t("footballLeagues")}
       </div>
       <div className="md:hidden xs:flex items-center h-12 w-1/2">
-        {!isLoading && leagues.length > 0 ? (
+        {!isLoading && leagues?.length > 0 ? (
           <SelectLegacy
             className="h-12 w-full mr-3"
             defaultValue={String(league?._id)}
@@ -64,14 +67,14 @@ const HomeLeagues = ({ league, onSelectLeague }: HomeLeaguesProps) => {
       </div>
       <div className="w-full xs:hidden md:flex h-fit py-2 flex-wrap">
         {isLoading &&
-          leagues.length === 0 &&
+          leagues?.length === 0 &&
           Array.from({ length: 9 }).map((_1, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <HomeLeagueItemSkeleton key={index} />
           ))}
         {!isLoading &&
-          leagues.length !== 0 &&
-          leagues.map((item) => (
+          leagues?.length !== 0 &&
+          leagues?.map((item) => (
             <HomeLeagueItem
               isActive={String(league._id) === String(item._id)}
               key={item._id}
@@ -79,7 +82,7 @@ const HomeLeagues = ({ league, onSelectLeague }: HomeLeaguesProps) => {
               onSelectLeague={onSelectLeague}
             />
           ))}
-        {!isLoading && leagues.length < 1 && <TableContentBodyEmptyItem className="w-full h-96" />}
+        {!isLoading && leagues?.length < 1 && <TableContentBodyEmptyItem className="w-full h-96" />}
       </div>
     </div>
   );

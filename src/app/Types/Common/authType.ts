@@ -1,12 +1,12 @@
 import { UserDataType } from "./userType";
 
 export interface AuthTokenType {
-  accessToken: string;
-  refreshToken: string;
+  access_token: string;
+  refresh_token: string;
 }
 
 export interface AuthLoginFormDataType {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -14,7 +14,6 @@ export interface AuthRegisterFormDataType extends Pick<UserDataType, "email"> {
   username: string;
   fullname: string;
   password: string;
-  password_confirmation: string;
 }
 
 export interface AuthForgetPasswordFormDataType {

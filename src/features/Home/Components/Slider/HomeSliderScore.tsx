@@ -1,26 +1,32 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { useTranslation } from "react-i18next";
 
 import { ScoreDataType } from "@interfaces/Common/scoreType";
 import { getScores } from "@services/App/scoreService";
+import useToast from "@hooks/useToast";
 
 import HomeSliderScoreItem from "./HomeSliderScoreItem";
 import HomeSliderScoreItemSkeleton from "./HomeSliderScoreItemSkeleton";
 
 const HomeSliderScore = () => {
+  const { t } = useTranslation();
   const [scores, setScores] = useState<ScoreDataType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const toast = useToast();
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
       const { data } = await getScores();
       setScores(data);
+    } catch {
+      toast.error(t("unknown"));
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [toast, t]);
 
   useEffect(() => {
     fetchData();

@@ -23,7 +23,7 @@ const LayoutHeaderNavbar = () => {
       </Link>
       <Link
         className="cursor-pointer duration-75 hover:text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500"
-        to={HOME_PATH.HIGHTLIGHT}
+        to={HOME_PATH.HIGHLIGHT}
       >
         {t("highlight")}
       </Link>
