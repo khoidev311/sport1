@@ -23,7 +23,7 @@ const CommonRoutes = () => {
   const user = useSelector((state) => state.common.user);
 
   const excludeRedirectPaths = useMemo(
-    () => ["/", "error/*", "auth/*", "docs/*", "news/*", "highlight/*", "club/*"],
+    () => ["/", "error/*", "auth/*", "docs/*", "news/*", "highlight/*", "club/*", "match/*"],
     [],
   );
   const excludeGetUserPaths = useMemo(() => [], []);

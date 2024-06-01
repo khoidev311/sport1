@@ -1,111 +1,82 @@
-import { ConfigStatusEnum, ConfigTypeEnum } from "@enums/configEnum";
-import { ConfigDataType } from "@interfaces/Common";
+import { CONFIG_API_PATH } from "@constants/apiConstant";
+import { BaseListQueryType, ConfigDataType, ConfigFormDataType, ResponseDataType } from "@interfaces/Common";
+import { axiosInstance } from "@utils/Axios";
 
 const fakeConfigData: ConfigDataType[] = [
   {
     _id: 1,
     key: "site-description",
     value: "Website news for football",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 2,
     key: "footer-facebook",
     value: "https://www.facebook.com",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 3,
     key: "footer-twitter",
     value: "https://www.twitter.com",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 4,
     key: "footer-instagram",
     value: "https://www.instagram.com",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 10,
     key: "footer-linkedin",
     value: "https://www.linkedin.com",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 11,
     key: "footer-phone",
-    value: "0989999999",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
+    value: "0999999999",
   },
   {
     _id: 12,
     key: "footer-email",
     value: "contact@gmail.com",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 4,
     key: "site-name",
     value: "SPORT1",
-    type: ConfigTypeEnum.STRING,
-    status: ConfigStatusEnum.PUBLIC,
-  },
-  {
-    _id: 6,
-    key: "cover-image-default",
-    value:
-      "https://media.techupcorp.com/agolf-system/public/img/GUYTI3BY8FjxENR-Great_Waters_at_Reynolds_Lake_Oconee_-_Oct_2019.jpg",
-    type: ConfigTypeEnum.IMAGE,
-    status: ConfigStatusEnum.PUBLIC,
-  },
-  {
-    _id: 3,
-    key: "site-logo",
-    value: "https://media.techupcorp.com/agolf-system/public/img/c0V4RoBF7USpNOA-FullLogo_Transparent.png",
-    type: ConfigTypeEnum.IMAGE,
-    status: ConfigStatusEnum.PUBLIC,
-  },
-  {
-    _id: 24,
-    key: "site-icon",
-    value: "https://media.techupcorp.com/agolf-system/public/img/gbnBKg67sMYUOtA-agolf-favo-icon.png",
-    type: ConfigTypeEnum.IMAGE,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 26,
     key: "pagination-trigger-percent",
     value: "70",
-    type: ConfigTypeEnum.NUMBER,
-    status: ConfigStatusEnum.PUBLIC,
   },
   {
     _id: 25,
     key: "pagination-page-size",
-    value: "60",
-    type: ConfigTypeEnum.NUMBER,
-    status: ConfigStatusEnum.PUBLIC,
+    value: "10",
   },
 ];
 
 const getPublicConfigs = async (): Promise<ConfigDataType[]> => {
-  // const response = await Axios.instance.get(CONFIG_API_PATH.CONFIGS, {
-  //   params: {
-  //     pageSize: 99,
-  //   },
-  // });
-
-  // return response.data.data;
-
   return Promise.resolve(fakeConfigData);
 };
 
-export { getPublicConfigs };
+const getConfigs = async (params?: BaseListQueryType): Promise<ResponseDataType<ConfigDataType[]>> => {
+  const response = await axiosInstance.get(CONFIG_API_PATH.CONFIGS, { params });
+  return {
+    data: response.data.data,
+    meta: response.data.meta,
+  };
+};
+
+const createConfig = async (data: ConfigFormDataType) => {
+  await axiosInstance.post(CONFIG_API_PATH.CONFIGS, data);
+};
+
+const editConfig = async (id: number, data: ConfigFormDataType) => {
+  await axiosInstance.put(CONFIG_API_PATH.CONFIGS_ID(id), data);
+};
+
+const deleteConfig = async (id: number) => {
+  await axiosInstance.delete(CONFIG_API_PATH.CONFIGS_ID(id));
+};
+
+export { getConfigs, createConfig, editConfig, deleteConfig, getPublicConfigs };
