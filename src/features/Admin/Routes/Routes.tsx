@@ -10,6 +10,7 @@ import AdminTeamManagement from "../Team/Team";
 import AdminScoreManagement from "../Score/Score";
 import AdminFixtureManagement from "../Fixture/Fixture";
 import AdminRankManagement from "../Ranking/Rank";
+import AdminConfigManagement from "../Config/Config";
 import AdminSidebar from "../Components/AdminSidebar";
 
 const AdminRoutes = () => {
@@ -27,6 +28,7 @@ const AdminRoutes = () => {
         <Route path="score" element={<AdminScoreManagement />} />
         <Route path="user" element={<AdminUserManagement />} />
         <Route path="role" element={<AdminRoleManagement />} />
+        <Route path="config" element={<AdminConfigManagement />} />
       </Routes>
     </LayoutContainer>
   );

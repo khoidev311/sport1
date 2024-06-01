@@ -187,5 +187,11 @@
   "efficiency":"Efficiency",
   "goal":"Goal",
   "somethingWentWrong":"Something went wrong",
-  "tryAgain":"Try again"
+  "tryAgain":"Try again",
+  "addConfig":"Add Config",
+  "editConfig":"Edit Config",
+  "deleteConfig":"Delete Config",
+  "key":"Key",
+  "configManagement":"Config Management",
+  "value":"Value"
 }

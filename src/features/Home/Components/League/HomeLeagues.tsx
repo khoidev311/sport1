@@ -50,7 +50,7 @@ const HomeLeagues = ({ league, onSelectLeague }: HomeLeaguesProps) => {
       <div className="md:hidden xs:flex items-center h-12 w-1/2">
         {!isLoading && leagues?.length > 0 ? (
           <SelectLegacy
-            className="h-12 w-full mr-3"
+            className="h-12 w-full mr-3 justify-end"
             defaultValue={String(league?._id)}
             position={SelectPositionEnum.BOTTOM_RIGHT}
             onChange={(value) => onSelectLeague(leagues.find((item) => item._id === value) as LeagueDataType)}

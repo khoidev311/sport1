@@ -46,6 +46,7 @@ export const SCORE_API_PATH = {
 
 export const CONFIG_API_PATH = {
   CONFIGS: "api/configs",
+  CONFIGS_ID: (id: Key) => `api/configs/${id}`,
 };
 
 export const AUTH_API_PATH = {
@@ -58,5 +59,5 @@ export const AUTH_API_PATH = {
 };
 
 export const COMMON_API_PATH = {
-  UPLOAD_IMAGE: "v1/upload",
+  UPLOAD_IMAGE: "api/upload",
 };

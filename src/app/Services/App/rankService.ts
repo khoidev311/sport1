@@ -8,61 +8,6 @@ import { BaseListQueryType, ResponseDataType } from "@interfaces/Common";
 import { RankDataType, RankFormDataType } from "@interfaces/Common/rankType";
 import { axiosInstance } from "@utils/Axios";
 
-// import { fakeDataRankLaliga, fakeDataRankPremierLeague } from "./teamService";
-
-// const fakeDataRankPremierLeague: RankDataType[] = fakeDataRankPremierLeague.map((item, index) => ({
-//   _id: index,
-//   rank: index + 1,
-//   win: 26,
-//   lost: 10,
-//   draw: 2,
-//   efficiency: 40,
-//   goal: 52,
-//   point: 80 - index,
-//   history_match: ["W", "W", "L", "D", "D"],
-//   total_match: 40,
-//   team: item,
-// }));
-
-// const fakeDataRankLaLiga: RankDataType[] = fakeDataRankLaliga.map((item, index) => ({
-//   _id: index,
-//   rank: index + 1,
-//   win: 26,
-//   lost: 10,
-//   draw: 2,
-//   efficiency: 40,
-//   goal: 52,
-//   point: 80 - index,
-//   history_match: ["W", "W", "L", "D", "D"],
-//   total_match: 40,
-//   team: item,
-// }));
-
-// const getRank = async (leagueId: number | string) =>
-//   new Promise<ResponseDataType<RankDataType[]>>((resolve) => {
-//     setTimeout(() => {
-//       let fakeData: RankDataType[];
-//       switch (leagueId) {
-//         case 1:
-//           fakeData = fakeDataRankPremierLeague;
-//           break;
-//         case 2:
-//           fakeData = fakeDataRankLaLiga;
-//           break;
-//         default:
-//           fakeData = [];
-//       }
-//       resolve({
-//         data: fakeData,
-//         meta: {
-//           total: fakeData.length,
-//         },
-//       });
-//     }, 1000);
-//   });
-
-// export { getRank };
-
 const getRanks = async (params?: BaseListQueryType): Promise<ResponseDataType<RankDataType[]>> => {
   const response = await axiosInstance.get(RANK_API_PATH.RANKS, { params });
   return {
